@@ -1,11 +1,12 @@
 import { Router } from "express";
 /** Controllers */
-import Videos from "./videos";
-import Search from "./search";
+import Healthcheck from "./Healthcheck";
+import Videos from "./Videos";
+import Search from "./Search";
 
 const routes = Router();
 
-const loaderRoute = [Videos, Search];
+const loaderRoute = [Healthcheck, Videos, Search];
 
 loaderRoute.map((res) => routes.use(res));
 
