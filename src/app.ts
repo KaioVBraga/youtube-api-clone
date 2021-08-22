@@ -11,8 +11,8 @@ class App {
     this.express = express();
 
     this.middlewares();
-    this.routes();
     this.errorHandler();
+    this.routes();
   }
 
   private middlewares(): void {

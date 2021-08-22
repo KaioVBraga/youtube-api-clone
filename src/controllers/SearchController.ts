@@ -3,20 +3,25 @@ import apiYoutube from "../providers/AxiosYoutubeApi";
 
 class SearchController {
   async index(req: Request, res: Response): Promise<Response> {
-    const { part, type, q, maxResults } = req.query;
+    try {
+      const { part, type, q, maxResults } = req.query;
 
-    const data = (
-      await apiYoutube.get("search", {
+      const { data } = await apiYoutube.get("search", {
         params: {
           part,
           type,
           q,
           maxResults,
         },
-      })
-    ).data;
-
-    return res.json(data);
+      });
+      return res.json(data);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        msg: "An error ocurred !",
+        err: err.message,
+      });
+    }
   }
 }
 
